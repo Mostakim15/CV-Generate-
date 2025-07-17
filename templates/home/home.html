@@ -1,0 +1,141 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <title>Home</title>
+        
+    </head>
+        <body class="bg-slate-500 text-gray-800">
+        <nav class="bg-blue-600 p-4 shadow-md">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    
+    <!-- Logo -->
+    <div class="text-white text-xl font-bold">
+      <a href="#">CV Generator</a>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="flex space-x-4">
+      <a href="{% url 'home' %}" class="text-white hover:underline">Create CV</a>
+      <a href="{% url 'show' %}" class="text-white hover:underline">Show CVs</a>
+    </div>
+
+    <!-- Search Form -->
+    <form method="GET" action="" class="flex items-center space-x-2">
+      <input type="text" name="" placeholder="Search by cv name"
+        class="px-3 py-1  rounded-md border border-gray-300 bg-white focus:outline-none text-sm" />
+      <button type="submit"
+        class="bg-red-500 text-white px-3 py-1 rounded-md font-medium hover:bg-gray-100 mr-[40px] text-sm">Search</button>
+    </form>
+  </div>
+</nav>
+<!-- Main Content -->
+{% if messages %}
+<div class="max-w-7xl mx-auto mt-8">
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Error!</strong>
+        <span class="block sm:inline">{{ messages }}</span>
+    </div>
+</div>
+{% endif %}
+<div class="max-w-7xl mx-auto mt-8">
+    <form method="POST" enctype="multipart/form-data" class="max-w-2xl mx-auto p-6 bg-slate-100 shadow-md rounded-lg space-y-6">
+        {% csrf_token %}
+        <h1 class="text-2xl font-bold text-center text-gray-800">Create Your CV</h1>
+        <!-- Name -->
+
+        <div>
+            <label name="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+            <input type="text" name="name" id="name"    
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" />
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label name="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="email" id="email" required
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" />
+        </div>
+
+        <!-- Phone -->
+        <div>
+            <label name="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+            <input type="text" name="phone" id="phone"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300" />
+        </div>
+
+        <!-- Image -->
+        <div>
+            <label name="image" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+            <input type="file" name="image" id="image" accept="image/*"
+            class="mt-1 block w-full text-gray-700 border border-gray-300 rounded-md shadow-sm file:px-4 file:py-2 file:bg-blue-200 file:border file:border-blue-300 file:rounded-md file:text-sm file:font-medium" />
+        </div>
+
+        <!-- Summary -->
+        <div>
+            <label name="summary" class="block text-sm font-medium text-gray-700">Summary</label>
+            <textarea name="summary" id="summary" rows="4"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            placeholder="Write a brief summary about yourself..."></textarea>
+        </div>
+
+        <!-- Address -->
+        <div>
+            <label name="address" class="block text-sm font-medium text-gray-700">Address</label>
+            <textarea name="address" id="address" rows="2"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"></textarea>
+        </div>
+
+        <!-- Education -->
+        <div>
+            <label name="education" class="block text-sm font-medium text-gray-700">Education</label>
+            <textarea name="education" id="education" rows="3"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            placeholder="Include your degrees, institutions, and years..."></textarea>
+        </div>
+
+        <!-- Certifications -->
+        <div>
+            <label name="certifications" class="block text-sm font-medium text-gray-700">Certifications</label>
+            <textarea name="certifications" id="certifications" rows="2"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"></textarea>
+        </div>
+
+        <!-- Projects -->
+        <div>
+            <label name="projects" class="block text-sm font-medium text-gray-700">Projects</label>
+            <textarea name="projects" id="projects" rows="3"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"></textarea>
+        </div>
+
+        <!-- Experience -->
+        <div>
+            <label name="experience" class="block text-sm font-medium text-gray-700">Experience</label>
+            <textarea name="experience" id="experience" rows="3"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300"></textarea>
+        </div>
+
+        <!-- Skills -->
+        <div>
+            <label name="skills" class="block text-sm font-medium text-gray-700">Skill Level</label>
+            <select name="skills" id="skills"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-300">
+            <option value="Basic">Basic</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+            </select>
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-4">
+            <button type="submit"
+            class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 shadow-sm transition">Generate CV</button>
+        </div>
+        </form>
+
+</div>
+
+    </body>
+    </html>

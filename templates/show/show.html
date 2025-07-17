@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>show</title>
+</head>
+<body>
+        <nav class="bg-blue-600 p-4 shadow-md">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    
+    <!-- Logo -->
+    <div class="text-white text-xl font-bold">
+      <a href="#">CV Generator</a>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="flex space-x-4">
+      <a href="{% url 'home' %}" class="text-white hover:underline">Create CV</a>
+      <a href="{% url 'show' %}" class="text-white hover:underline">Show CVs</a>
+    </div>
+
+    <!-- Search Form -->
+    <form method="GET" action="" class="flex items-center space-x-2">
+      <input type="text" name="q" placeholder="Search by cv name"
+        class="px-3 py-1  rounded-md border border-gray-300 bg-white focus:outline-none text-sm" />
+      <button type="submit"
+        class="bg-red-500 text-white px-3 py-1 rounded-md font-medium hover:bg-gray-100 mr-[40px] text-sm">Search</button>
+    </form>
+  </div>
+</nav>
+<!-- Main Content -->
+{% for cv in cvs %}
+<form action="" method="GET" enctype="multipart/form-data" class="max-w-2xl mx-auto p-6 bg-slate-100 shadow-md rounded-lg space-y-6">
+    {% csrf_token %}
+    <h1 class="text-2xl font-bold text-center text-gray-800">CV Details</h1>
+    
+    <!-- Display CV Details -->
+<div class="max-w-3xl mx-auto p-8 bg-white shadow-lg rounded-lg mt-8 text-gray-800">
+  <!-- Profile Section -->
+  <div class="flex items-center space-x-6 mb-6">
+    {% if cv.image %}
+      <img src="{{ cv.image.url }}" alt="{{ cv.name }}" class="w-24 h-24 rounded-md object-cover shadow">
+    {% else %}
+      <img src="{{ 'cv_person_img/default.jpg' }}" alt="Default Image" class="w-24 h-24 rounded-md object-cover shadow">
+    {% endif %}
+    <div>
+      <h1 class="text-3xl font-bold">{{ cv.name }}</h1>
+      <p class="text-sm text-gray-500">{{ cv.email }}</p>
+      <p class="text-sm text-gray-500">{{ cv.phone }}</p>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold border-b pb-1 mb-2">Professional Summary</h2>
+    <p class="text-gray-700 whitespace-pre-line">{{ cv.summary }}</p>
+  </div>
+
+  <!-- Education -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold border-b pb-1 mb-2">Education</h2>
+    <p class="text-gray-700 whitespace-pre-line">{{ cv.education }}</p>
+  </div>
+
+  <!-- Certifications -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold border-b pb-1 mb-2">Certifications</h2>
+    <p class="text-gray-700 whitespace-pre-line">{{ cv.certifications }}</p>
+  </div>
+
+  <!-- Projects -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold border-b pb-1 mb-2">Projects</h2>
+    <p class="text-gray-700 whitespace-pre-line">{{ cv.projects }}</p>
+  </div>
+
+  <!-- Experience -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold border-b pb-1 mb-2">Work Experience</h2>
+    <p class="text-gray-700 whitespace-pre-line">{{ cv.experience }}</p>
+  </div>
+
+  <!-- Skills -->
+  <div class="mb-6">
+    <h2 class="text-xl font-semibold border-b pb-1 mb-2">Skill Level</h2>
+    <p class="text-gray-700">{{ cv.skills }}</p>
+  </div>
+</div>
+</form>
+{% endfor %}
+</body>
+</html>
