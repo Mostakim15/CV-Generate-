@@ -32,14 +32,6 @@
   </div>
 </nav>
 <!-- Main Content -->
-{% if messages %}
-<div class="max-w-7xl mx-auto mt-8">
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">Error!</strong>
-        <span class="block sm:inline">{{ messages }}</span>
-    </div>
-</div>
-{% endif %}
 <div class="max-w-7xl mx-auto mt-8">
     <form method="POST" enctype="multipart/form-data" class="max-w-2xl mx-auto p-6 bg-slate-100 shadow-md rounded-lg space-y-6">
         {% csrf_token %}

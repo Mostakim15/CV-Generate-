@@ -23,7 +23,7 @@
 
     <!-- Search Form -->
     <form method="GET" action="" class="flex items-center space-x-2">
-      <input type="text" name="q" placeholder="Search by cv name"
+      <input type="text" name=Search" placeholder="Search by cv name"
         class="px-3 py-1  rounded-md border border-gray-300 bg-white focus:outline-none text-sm" />
       <button type="submit"
         class="bg-red-500 text-white px-3 py-1 rounded-md font-medium hover:bg-gray-100 mr-[40px] text-sm">Search</button>
@@ -43,7 +43,7 @@
     {% if cv.image %}
       <img src="{{ cv.image.url }}" alt="{{ cv.name }}" class="w-24 h-24 rounded-md object-cover shadow">
     {% else %}
-      <img src="{{ 'cv_person_img/default.jpg' }}" alt="Default Image" class="w-24 h-24 rounded-md object-cover shadow">
+      <img src="cv_person_img/default.jpg" alt="Default Image" class="w-24 h-24 rounded-md object-cover shadow">
     {% endif %}
     <div>
       <h1 class="text-3xl font-bold">{{ cv.name }}</h1>
