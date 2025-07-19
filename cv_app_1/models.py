@@ -5,7 +5,7 @@ class CV(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    image = models.ImageField(upload_to='images/', default='images/default.jpg', blank=True, null=True)
+    image = models.ImageField(upload_to='images/', default='media/images/default.jpg', blank=True, null=True)
     summary = models.TextField()
     address = models.TextField()
     education = models.TextField()
